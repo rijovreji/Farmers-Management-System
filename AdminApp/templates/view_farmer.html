@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <!-- HEADER -->
+    <div class="page-header d-flex justify-content-between align-items-center mb-3">
+        <h4><i class="fa fa-user"></i> Farmers Management</h4>
+<!--        <a href="#" class="btn btn-success">-->
+<!--            <i class="fa fa-plus"></i> Add Farmer-->
+<!--        </a>-->
+
+    </div>
+
+    <!-- FARMERS TABLE -->
+    <div class="card shadow">
+        <div class="card-body p-0">
+            <table class="table table-bordered table-striped mb-0">
+                <thead class="table-success">
+                <tr>
+                    <th>Farmer Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Password</th>
+                    <th width="180">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    {% for i in data %}
+                    <td>{{i.f_name}}</td>
+                    <td>{{i.f_email}}</td>
+                    <td>{{i.f_number}}</td>
+                    <td>{{i.f_password}}</td>
+                    <td>
+                        <a href="{% url 'Edite_farmers' farmer_id=i.id %}" class="btn btn-sm btn-primary" onclick="editFarmer()">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+                        <a class="btn btn-sm btn-danger" onclick="deleteFarmer()">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    </td>
+                    {% endfor %}
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<!-- UI ACTION JS -->
+<script>
+
+
+    function editFarmer() {
+        alert("Edit Farmer action clicked (UI only)");
+    }
+
+    function deleteFarmer() {
+        if (confirm("Are you sure you want to delete this farmer?")) {
+            alert("Delete Farmer action clicked (UI only)");
+        }
+    }
+</script>
+{% endblock %}

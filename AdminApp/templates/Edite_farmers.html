@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="card shadow mx-auto" style="max-width: 600px;">
+        <div class="card-header bg-success text-white text-center">
+            <h4><i class="fa fa-user-plus"></i> Edite Farmer</h4>
+        </div>
+
+        <div class="card-body">
+            <form method="post" action="{% url 'update_farmer' f_id=data.id %}">
+                {% csrf_token %}
+
+                <!-- Farmer Name -->
+                <div class="mb-3">
+                    <label class="form-label">Farmer Name</label>
+                    <input type="text"
+                           class="form-control"
+                           name="name"
+                           value="{{data.f_name}}"
+                           placeholder="Enter farmer name"
+                           required>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label">Email Address</label>
+                    <input type="email"
+                           class="form-control"
+                           name="email"
+                           value="{{data.f_email}}"
+                           placeholder="Enter email"
+                           required>
+                </div>
+
+                <!-- Phone -->
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel"
+                           class="form-control"
+                           name="phone_number"
+                           value="{{data.f_number}}"
+                           placeholder="Enter phone number"
+                           required>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password"
+                           class="form-control"
+                           name="password"
+                           value="{{data.f_password}}"
+                           placeholder="Enter password"
+                           required>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i> Add Farmer
+                    </button>
+
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
