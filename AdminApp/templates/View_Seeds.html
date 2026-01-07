@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <!-- HEADER -->
+    <div class="page-header d-flex justify-content-between align-items-center mb-3">
+        <h4><i class="fa fa-leaf"></i> Seeds Management</h4>
+
+        <a href="{% url 'Add_Seeds' %}" class="btn btn-success">
+            <i class="fa fa-plus"></i> Add Seeds
+        </a>
+    </div>
+
+    <!-- SEEDS TABLE -->
+    <div class="card shadow">
+        <div class="card-body p-0">
+            <table class="table table-bordered table-striped mb-0">
+                <thead class="table-success">
+                <tr>
+                    <th>Image</th>
+                    <th>Seed Name</th>
+                    <th>Seed Type</th>
+                    <th>Quantity (kg)</th>
+                    <th>Price (₹)</th>
+                    <th>Description</th>
+                    <th width="200">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for seed in data %}
+                <tr>
+                    <td class="text-center">
+                        {% if seed.seeds_image %}
+                        <img src="{{ seed.seeds_image.url }}"
+                             alt="Seed Image"
+                             style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                        {% else %}
+                        <span class="text-muted">No Image</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ seed.seeds_name }}</td>
+                    <td>{{ seed.seeds_type }}</td>
+                    <td>{{ seed.seeds_quantity }}</td>
+                    <td>₹ {{ seed.seeds_price }}</td>
+                    <td style="max-width: 250px;">
+                        {{ seed.seeds_description }}
+                    </td>
+
+                    <td>
+                        <a href="#"
+                           class="btn btn-sm btn-primary">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+
+                        <a href="#"
+                           class="btn btn-sm btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this seed?')">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-3">
+                        No seeds available
+                    </td>
+                </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

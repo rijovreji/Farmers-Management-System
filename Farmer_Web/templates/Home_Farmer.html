@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmers Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            overflow-x: hidden;
+        }
+
+        .navbar-brand {
+            font-size: 22px;
+            letter-spacing: 1px;
+        }
+
+        /* Animations */
+        .fade-in {
+            animation: fadeZoom 1.5s ease-in-out;
+        }
+
+        @keyframes fadeZoom {
+            from { opacity: 0; transform: scale(1.05); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .carousel-img {
+            height: 500px;
+            object-fit: cover;
+        }
+
+        .carousel-caption {
+            background: rgba(0,0,0,0.55);
+            padding: 15px 25px;
+            border-radius: 10px;
+            animation: slideUp 1s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Harvest Cards */
+        .harvest-card {
+            transition: 0.3s;
+        }
+
+        .harvest-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background-color: #198754;
+            color: white;
+            padding: 25px 0;
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-success fixed-top shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Farmers System</a>
+
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Seeds</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Tools</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Buyer Needs</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Upload Harvest</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                <li class="nav-item">
+                    <a class="btn btn-light text-success ms-2 px-3" href="#">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- SPACER -->
+<div style="margin-top:70px;"></div>
+
+<!-- CAROUSEL -->
+<section class="fade-in">
+    <div id="farmCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active">
+                <img src="{% static 'farmer_images/1.jpg' %}" class="d-block w-100 carousel-img">
+                <div class="carousel-caption">
+                    <h3>Fresh Harvest Products</h3>
+                    <p>Direct from farmers to buyers</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{% static 'farmer_images/2.jpg' %}" class="d-block w-100 carousel-img">
+                <div class="carousel-caption">
+                    <h3>Quality Crops</h3>
+                    <p>Best market price</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{% static 'farmer_images/3.jpg' %}" class="d-block w-100 carousel-img">
+                <div class="carousel-caption">
+                    <h3>Modern Farming</h3>
+                    <p>Digital solutions for farmers</p>
+                </div>
+            </div>
+
+            <div class="carousel-item">
+                <img src="{% static 'farmer_images/4.jpg' %}" class="d-block w-100 carousel-img">
+                <div class="carousel-caption">
+                    <h3>Connect with Buyers</h3>
+                    <p>Fast and secure deals</p>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#farmCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next" type="button" data-bs-target="#farmCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+</section>
+
+<!-- HARVEST SECTION -->
+<section class="container my-5">
+    <h2 class="text-center mb-4">Available Harvest</h2>
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card harvest-card">
+                <img src="{% static 'farmer_images/1.jpg' %}" style="height:250px;  object-fit:cover;" class="card-img-top">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Organic Rice</h5>
+                    <p class="card-text">Freshly harvested premium rice</p>
+                    <a href="#" class="btn btn-success">Upload Harvest</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card harvest-card">
+                <img src="{% static 'farmer_images/2.jpg' %}" style="height:250px;  object-fit:cover;" class="card-img-top">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Wheat</h5>
+                    <p class="card-text">High quality wheat crops</p>
+                    <a href="#" class="btn btn-success">Upload Harvest</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card harvest-card">
+                <img src="{% static 'farmer_images/3.jpg' %}" style="height:250px;  object-fit:cover;" class="card-img-top">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Vegetables</h5>
+                    <p class="card-text">Farm fresh vegetables</p>
+                    <a href="#" class="btn btn-success">Upload Harvest</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="container text-center">
+        <p class="mb-2">© 2026 Farmers Management System</p>
+        <a href="#">Support</a> |
+        <a href="#">Help</a> |
+        <a href="#">Contact</a>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

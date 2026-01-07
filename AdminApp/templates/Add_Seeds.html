@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="card shadow mx-auto" style="max-width: 600px;">
+        <div class="card-header bg-success text-white text-center">
+            <h4>
+                <i class="fa fa-leaf"></i> Add Seeds
+            </h4>
+        </div>
+
+        <div class="card-body">
+            <form method="post"
+                  action="{% url 'Save_SeedsData' %}"
+                  enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- Seed Name -->
+                <div class="mb-3">
+                    <label class="form-label">Seed Name</label>
+                    <input type="text"
+                           class="form-control"
+                           name="seed_name"
+                           placeholder="Enter seed name"
+                           required>
+                </div>
+
+                <!-- Seed Type -->
+                <div class="mb-3">
+                    <label class="form-label">Seed Type</label>
+                    <input type="text"
+                           class="form-control"
+                           name="seed_type"
+                           placeholder="Eg: Vegetable, Grain, Fruit"
+                           required>
+                </div>
+
+                <!-- Quantity -->
+                <div class="mb-3">
+                    <label class="form-label">Quantity (kg)</label>
+                    <input type="number"
+                           class="form-control"
+                           name="quantity"
+                           placeholder="Enter quantity"
+                           required>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-3">
+                    <label class="form-label">Price (₹)</label>
+                    <input type="number"
+                           class="form-control"
+                           name="price"
+                           placeholder="Enter price"
+                           required>
+                </div>
+
+                <!-- Seed Image -->
+                <div class="mb-3">
+                    <label class="form-label">Seed Image</label>
+                    <input type="file"
+                           class="form-control"
+                           name="seed_image"
+                           accept="image/*"
+                           required>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control"
+                              name="description"
+                              rows="3"
+                              placeholder="Enter seed description"></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-save"></i> Add Seeds
+                    </button>
+
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

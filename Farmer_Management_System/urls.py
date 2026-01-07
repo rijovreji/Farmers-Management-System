@@ -14,17 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns,static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns, static
 from Farmer_Management_System import settings
 from . import settings
 
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
 import AdminApp.urls
+import Farmer_Web.urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('AdminApp/',include(AdminApp.urls))
+    path('AdminApp/', include(AdminApp.urls)),
+    path('Farmer_Web/', include(Farmer_Web.urls))
 ]
-urlpatterns+=staticfiles_urlpatterns()
-urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
