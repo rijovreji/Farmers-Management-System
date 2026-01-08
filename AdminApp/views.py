@@ -2,8 +2,7 @@ from django.core.files.storage import FileSystemStorage
 from django.utils.datastructures import MultiValueDictKeyError
 
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login
-
+from django.contrib.auth import authenticate, login
 
 from django.shortcuts import render, redirect
 from AdminApp.models import *
@@ -55,28 +54,66 @@ def update_farmer(request, f_id):
                                                   f_number=farmer_phone,
                                                   f_password=farmer_password)
         return redirect(viewFarmer)
+
+
 def Add_Seeds(request):
-    return render(request,'Add_Seeds.html')
+    return render(request, 'Add_Seeds.html')
+
+
 def Save_SeedsData(request):
-    if request.method=="POST":
-        S_name=request.POST.get('seed_name')
-        S_type=request.POST.get('seed_type')
-        S_quantity=request.POST.get('quantity')
-        S_price=request.POST.get('price')
-        S_description=request.POST.get('description')
+    if request.method == "POST":
+        S_name = request.POST.get('seed_name')
+        S_type = request.POST.get('seed_type')
+        S_quantity = request.POST.get('quantity')
+        S_price = request.POST.get('price')
+        S_description = request.POST.get('description')
         S_image = request.FILES['seed_image']
-        obj=Seeds_Db(seeds_name=S_name,
-                     seeds_type=S_type,
-                     seeds_quantity=S_quantity,
-                     seeds_price=S_price,
-                     seeds_description=S_description,
-                     seeds_image=S_image)
+        obj = Seeds_Db(seeds_name=S_name,
+                       seeds_type=S_type,
+                       seeds_quantity=S_quantity,
+                       seeds_price=S_price,
+                       seeds_description=S_description,
+                       seeds_image=S_image)
         obj.save()
         return redirect(Add_Seeds)
+
+
 def View_Seeds(request):
-    data=Seeds_Db.objects.all()
-    return render(request,'View_Seeds.html',
-                  {'data':data})
+    data = Seeds_Db.objects.all()
+    return render(request, 'View_Seeds.html',
+                  {'data': data})
+
+
+def Edite_seeds(request, s_id):
+    data = Seeds_Db.objects.get(id=s_id)
+    return render(request, 'Edite_seeds.html',
+                  {'data': data})
+
+
+def updateseeds(request, seed_id):
+    if request.method == "POST":
+        S_name = request.POST.get('seed_name')
+        S_type = request.POST.get('seed_type')
+        S_quantity = request.POST.get('quantity')
+        S_price = request.POST.get('price')
+        S_description = request.POST.get('description')
+        try:
+            img = request.FILES["seed_image"]
+            fs = FileSystemStorage()
+            file = fs.save(img.name, img)
+        except MultiValueDictKeyError:
+            file = Seeds_Db.objects.get(id=seed_id).seeds_image
+    Seeds_Db.objects.filter(id=seed_id).update(seeds_name=S_name,
+                                               seeds_type=S_type,
+                                               seeds_quantity=S_quantity,
+                                               seeds_price=S_price,
+                                               seeds_description=S_description,
+                                               seeds_image=file)
+    return redirect(View_Seeds)
+def delete_Seeds(request, s_id):
+    Seeds = Seeds_Db.objects.filter(id=s_id)
+    Seeds.delete()
+    return redirect(View_Seeds)
 
 
 
