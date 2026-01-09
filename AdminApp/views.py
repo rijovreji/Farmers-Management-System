@@ -114,6 +114,27 @@ def delete_Seeds(request, s_id):
     Seeds = Seeds_Db.objects.filter(id=s_id)
     Seeds.delete()
     return redirect(View_Seeds)
-
+def Add_Farming_Tool(request):
+    return render(request, 'Add_Farming_Tool.html')
+def Save_Farming_Tools(request):
+    if request.method=="POST":
+        T_name=request.POST.get("tool_name")
+        T_type=request.POST.get("tool_type")
+        T_quantity=request.POST.get("tool_quantity")
+        T_price=request.POST.get("tool_price")
+        T_description=request.POST.get("tool_description")
+        T_image=request.FILES["tool_image"]
+        obj=Farming_Tools_Db(tool_name=T_name,
+                       tool_type=T_type,
+                       tool_quantity=T_quantity,
+                       tool_price=T_price,
+                       tool_description=T_description,
+                       tool_image=T_image)
+        obj.save()
+        return redirect(Add_Farming_Tool)
+def view_Farming_tools(request):
+    data=Farming_Tools_Db.objects.all()
+    return render(request, 'view_Farming_tools.html',
+                  {'data':data})
 
 

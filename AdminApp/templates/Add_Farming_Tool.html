@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <div class="card shadow mx-auto" style="max-width: 600px;">
+        <div class="card-header bg-primary text-white text-center">
+            <h4>
+                <i class="fa fa-wrench"></i> Add Farming Tool
+            </h4>
+        </div>
+
+        <div class="card-body">
+            <form method="post"
+                  action="{% url 'Save_Farming_Tools' %}"
+                  enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- Tool Name -->
+                <div class="mb-3">
+                    <label class="form-label">Tool Name</label>
+                    <input type="text"
+                           class="form-control"
+                           name="tool_name"
+                           placeholder="Enter tool name"
+                           required>
+                </div>
+
+                <!-- Tool Type -->
+                <div class="mb-3">
+                    <label class="form-label">Tool Type</label>
+                    <input type="text"
+                           class="form-control"
+                           name="tool_type"
+                           placeholder="Eg: Hand Tool, Machine, Equipment"
+                           required>
+                </div>
+
+                <!-- Quantity -->
+                <div class="mb-3">
+                    <label class="form-label">Quantity</label>
+                    <input type="number"
+                           class="form-control"
+                           name="tool_quantity"
+                           placeholder="Enter quantity"
+                           required>
+                </div>
+
+                <!-- Price -->
+                <div class="mb-3">
+                    <label class="form-label">Price (₹)</label>
+                    <input type="number"
+                           class="form-control"
+                           name="tool_price"
+                           placeholder="Enter price"
+                           required>
+                </div>
+
+                <!-- Tool Image -->
+                <div class="mb-3">
+                    <label class="form-label">Tool Image</label>
+                    <input type="file"
+                           class="form-control"
+                           name="tool_image"
+                           accept="image/*"
+                           required>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control"
+                              name="tool_description"
+                              rows="3"
+                              placeholder="Enter tool description"></textarea>
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i> Add Tool
+                    </button>
+
+                    <a href="#" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Back
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

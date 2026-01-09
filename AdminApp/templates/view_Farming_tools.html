@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <!-- HEADER -->
+    <div class="page-header d-flex justify-content-between align-items-center mb-3">
+        <h4><i class="fa fa-wrench"></i> Farming Tools Management</h4>
+
+        <a href="{% url 'Add_Farming_Tool' %}" class="btn btn-primary">
+            <i class="fa fa-plus"></i> Add Tool
+        </a>
+    </div>
+
+    <!-- TOOLS TABLE -->
+    <div class="card shadow">
+        <div class="card-body p-0">
+            <table class="table table-bordered table-striped mb-0">
+                <thead class="table-primary">
+                <tr>
+                    <th>Image</th>
+                    <th>Tool Name</th>
+                    <th>Tool Type</th>
+                    <th>Quantity</th>
+                    <th>Price (₹)</th>
+                    <th>Description</th>
+                    <th width="200">Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for tool in data %}
+                <tr>
+                    <!-- Tool Image -->
+                    <td class="text-center">
+                        {% if tool.tool_image %}
+                        <img src="{{ tool.tool_image.url }}"
+                             alt="Tool Image"
+                             style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
+                        {% else %}
+                        <span class="text-muted">No Image</span>
+                        {% endif %}
+                    </td>
+
+                    <!-- Tool Details -->
+                    <td>{{ tool.tool_name }}</td>
+                    <td>{{ tool.tool_type }}</td>
+                    <td>{{ tool.tool_quantity }}</td>
+                    <td>₹ {{ tool.tool_price }}</td>
+
+                    <td style="max-width:250px;">
+                        {{ tool.tool_description }}
+                    </td>
+
+                    <!-- Actions -->
+                    <td>
+                        <a href="#"
+                           class="btn btn-sm btn-primary">
+                            <i class="fa fa-edit"></i> Edit
+                        </a>
+
+                        <a href="#"
+                           class="btn btn-sm btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this tool?')">
+                            <i class="fa fa-trash"></i> Delete
+                        </a>
+                    </td>
+                </tr>
+
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center text-muted py-3">
+                        No farming tools available
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

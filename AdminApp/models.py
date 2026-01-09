@@ -15,6 +15,17 @@ class Seeds_Db(models.Model):
     seeds_image=models.ImageField(upload_to="Seeds_Image",null=True,blank=True)
     seeds_description=models.CharField(max_length=300,null=True,blank=True)
 
+class Farming_Tools_Db(models.Model):
+    tool_name=models.CharField(max_length=100,null=True,blank=True)
+    tool_type=models.CharField(max_length=100,null=True,blank=True)
+    tool_quantity=models.IntegerField(null=True,blank=True)
+    tool_price=models.IntegerField(null=True,blank=True)
+    tool_image=models.ImageField(upload_to="Tools_image",null=True,blank=True)
+    tool_description=models.CharField(max_length=250,null=True,blank=True)
+
+
+
+
 
 
 

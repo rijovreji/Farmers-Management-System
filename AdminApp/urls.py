@@ -14,5 +14,8 @@ urlpatterns = [
     path('Edite_seeds/<int:s_id>/', views.Edite_seeds, name='Edite_seeds'),
     path('updateseeds/<int:seed_id>/', views.updateseeds, name='updateseeds'),
     path('delete_Seeds/<int:s_id>/', views.delete_Seeds, name='delete_Seeds'),
+    path('Add_Farming_Tool/', views.Add_Farming_Tool, name='Add_Farming_Tool'),
+    path('Save_Farming_Tools/', views.Save_Farming_Tools, name='Save_Farming_Tools'),
+    path('view_Farming_tools/', views.view_Farming_tools, name='view_Farming_tools'),
 
 ]
